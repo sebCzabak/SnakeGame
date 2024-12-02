@@ -207,4 +207,30 @@ class Program
             Console.Write("■");
         }
     }
+    static void UpdateGame(Pixel hoofd, int obstacleXpos, int obstacleYpos, List<int> snakeBody)
+    {
+        if (snakeBody.Count > 2)
+        {
+            int tailX = snakeBody[snakeBody.Count - 2];
+            int tailY = snakeBody[snakeBody.Count - 1];
+            Console.SetCursorPosition(tailX, tailY);
+            Console.Write(" ");
+        }
+
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.SetCursorPosition(obstacleXpos, obstacleYpos);
+        Console.Write("*");
+
+        Console.ForegroundColor = ConsoleColor.Green;
+        for (int i = 0; i < snakeBody.Count; i += 2)
+        {
+            Console.SetCursorPosition(snakeBody[i], snakeBody[i + 1]);
+            Console.Write("■");
+        }
+
+        Console.SetCursorPosition(2, screenheight - 1);
+        Console.ForegroundColor = ConsoleColor.Magenta;
+        Console.Write($"Score: {score}");
+    }
+
 }
